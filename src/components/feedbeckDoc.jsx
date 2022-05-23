@@ -1,13 +1,12 @@
 import React, { useState,useEffect } from "react";
-import { Statistics } from "./statistic-list"
-import { FeedbackOptions } from "./buttoon-list";
+import { Statistics } from "./Statistic-list"
+import { FeedbackOptions } from "./Buttoon-list";
 import { Notification } from "./Notification"
-import { Section } from "./sectionTitle"
+import { Section } from "./SectionTitle"
 export const Feedback = () => { 
     const [good, setGood] = useState(0);
     const [natural, setNatural] = useState(0);
     const [bad, setBad] = useState(0);
-    const [render, setRender] = useState(null);
 
 
     const handl = (event) => {
@@ -17,17 +16,14 @@ export const Feedback = () => {
         switch (name) {
     case "good": 
                 setGood((value) => value + 1);
-                setRender(true);
     break;
 
     case "natural": 
                 setNatural((value) => value + 1);
-                setRender(true);
                 break;
             
     case "bad":
                 setBad((value) => value + 1);
-                setRender(true);
     break;
 
     default:
@@ -52,7 +48,7 @@ export const Feedback = () => {
             <FeedbackOptions options={["good","natural","bad"]} onLeaveFeedback={handl} />
             </Section>
             <Section title="Statistic">
-            {render ? <Statistics good={good} neutral={natural} bad={bad} total={countTotalFeedback()} positivePercentage={countPositiveFeedbackPercentage()} />
+            {(countTotalFeedback()>0) ? <Statistics good={good} neutral={natural} bad={bad} total={countTotalFeedback()} positivePercentage={countPositiveFeedbackPercentage()} />
                 : <Notification message="There is no feedback" />}
             </Section>
         </div>

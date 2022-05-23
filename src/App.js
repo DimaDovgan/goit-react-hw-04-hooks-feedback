@@ -1,5 +1,5 @@
 import './App.css';
-import {Feedback} from "./components/feedbeckDoc.jsx"
+import {Feedback} from "./components/FeedbeckDoc.jsx"
 
 function App() {
   return (
